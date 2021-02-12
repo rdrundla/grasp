@@ -11,24 +11,22 @@ object SchedulerUtil {
 
     private val TAG = SchedulerUtil::class.java.simpleName
     fun schedule(context: Context, jobId: JobId) {
-        if (isScheduled(context, jobId)) {
-            Log.i(TAG, "schedule:  $jobId Already Scheduled!")
-        }
-        val jobInfo = when (jobId) {
-            RANDOM_NUMBER_JOB -> {
-                getRandomNumberGeneratorJob(context)
+        val jobInfo =
+            when (jobId) {
+                RANDOM_NUMBER_JOB -> {
+                    getRandomNumberGeneratorJob(context)
+                }
             }
-        }
 
         context.getSystemService(JobScheduler::class.java)
             .schedule(jobInfo)
         Log.i(TAG, "schedule: $jobId Job Scheduled!")
     }
 
-    private fun isScheduled(context: Context, jobId: JobId): Boolean {
+/*    private fun isScheduled(context: Context, jobId: JobId): Boolean {
         return context.getSystemService(JobScheduler::class.java)
             .getPendingJob(jobId.value) != null
-    }
+    }*/
 
     fun cancel(context: Context, jobId: JobId) {
         Log.i(TAG, "cancel: $jobId Canceled!")

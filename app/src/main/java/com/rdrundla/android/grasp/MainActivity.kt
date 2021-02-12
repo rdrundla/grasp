@@ -7,7 +7,6 @@ import com.rdrundla.android.grasp.jobscheduler.JobId
 import com.rdrundla.android.grasp.jobscheduler.SchedulerUtil
 
 class MainActivity : AppCompatActivity() {
-    private val TAG = MainActivity::class.java.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,5 +20,9 @@ class MainActivity : AppCompatActivity() {
     fun cancelJob(view: View) {
         Log.i(TAG, "cancelJob: ")
         SchedulerUtil.cancel(applicationContext, JobId.RANDOM_NUMBER_JOB)
+    }
+
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
     }
 }
